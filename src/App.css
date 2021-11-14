@@ -4,12 +4,12 @@
 
 .App-logo {
   height: 40vmin;
-  pointer-events: none;
+  pointer-events: visible;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 10s linear;
   }
 }
 
@@ -35,4 +35,79 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.container img {
+  height: 600px;
+}
+
+.viewPokemonButton {
+  position: relative;
+  margin-top: 50px;
+  margin-left: 190px;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  border: 1px solid grey;
+  text-decoration: none;
+  color: #105410;
+  border-radius: 12px;
+}
+
+.viewPokemonButton:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.backHomePage {
+  position: relative;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  border: 1px solid grey;
+  text-decoration: none;
+  color: #8a2a19;
+  border-radius: 12px;
+  margin: 5px;
+}
+
+.backHomePage:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.TitlePage{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  margin: -19px;
+}
+
+.TitlePage p a{
+  text-decoration: none;
+  padding: 15px;
+  cursor: zoom-in;
+}
+
+.TitlePage p:hover{
+  padding: 15px;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  /* cursor: zoom-in; */
 }
