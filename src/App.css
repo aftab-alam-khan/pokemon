@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 59vmin;
   pointer-events: visible;
 }
 
@@ -26,15 +26,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .container {
@@ -68,6 +59,7 @@
 
 .viewPokemonButton:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  font-weight: 700;
 }
 
 .backHomePage {
@@ -88,26 +80,75 @@
 
 .backHomePage:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  font-weight: 700;
 }
 
-.TitlePage{
+.TitlePage {
   display: flex;
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-  margin: -19px;
+  margin: -21px;
 }
 
-.TitlePage p a{
+.TitlePage p .atag {
   text-decoration: none;
-  padding: 15px;
+  padding: 10px;
   cursor: zoom-in;
 }
 
-.TitlePage p:hover{
+.TitlePage p:hover {
   padding: 15px;
   font-weight: bold;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  /* cursor: zoom-in; */
+}
+
+.next {
+  position: relative;
+  float: right;
+  margin-top: -50px;
+  cursor: pointer;
+}
+
+.previous {
+  cursor: pointer;
+}
+
+.disableButton {
+  cursor: not-allowed;
+  position: relative;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  border: 1px solid grey;
+  text-decoration: none;
+  color: #8a2a19;
+  border-radius: 12px;
+  margin: 5px;
+}
+
+.pokemonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.pokemonImage {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  cursor: grab;
+  height: 550px;
+  border-radius: 30px;
+}
+
+div span {
+  padding: 10px;
+  top: 19px;
+  position: relative;
+  font-weight: bold;
 }

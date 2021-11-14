@@ -5,6 +5,7 @@ import {
   Link
 } from "react-router-dom";
 import TitlePage from './pages/TitlePage'
+import Pokemon from './pages/Pokemon'
 
 import './App.css';
 
@@ -27,6 +28,7 @@ function Navigation() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/titlepage" element={<TitlePage />} />
+      <Route path="/pokemon" element={<Pokemon/>} />
     </Routes>
   </>)
 }
