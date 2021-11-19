@@ -28,7 +28,7 @@ function Navigation() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/titlepage" element={<TitlePage />} />
-      <Route path="/pokemon" element={<Pokemon/>} />
+      <Route path="/pokemon/:id" element={<Pokemon/>} />
     </Routes>
   </>)
 }
