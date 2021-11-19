@@ -24,12 +24,12 @@ const Pokemon = () => {
     };
     fetchData();
 
-  }, [])
+  })
 
 
   return (
     <>
-      <Link to="/titlepage" className="backHomePage">Title Page</Link>
+      <Link to="/titlepage?page=1" className="backHomePage">Title Page</Link>
       {(!pokemonData)
         ? <Loading />
         : (

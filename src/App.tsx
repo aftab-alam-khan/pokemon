@@ -38,7 +38,7 @@ function Home() {
     <>
       <div className="container">
         <img className="pokemonImage" src={imageHome} alt='home' />
-        <Link to="/titlepage" className="viewPokemonButton">View Pokemon</Link>
+        <Link to="/titlepage?page=1" className="viewPokemonButton">View Pokemon</Link>
       </div>
     </>)
 }

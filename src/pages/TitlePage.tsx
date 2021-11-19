@@ -67,12 +67,16 @@ function TitlePage() {
           <>
             <ShowPage pokemon={pokemonData.results} />
             <div className="previous">
+              <Link to='/titlepage?page=7' >
               <button className={(pokemonData.previous) ? "backHomePage" : 'disableButton'}
-                onClick={previousPage} disabled={(pokemonData.previous) ? false : true}>Previous</button>
+                  onClick={previousPage} disabled={(pokemonData.previous) ? false : true}>Previous</button>
+                </Link>
             </div>
             <div className="next">
+            <Link to='/titlepage?page=9' >
               <button className={(pokemonData.next) ? "backHomePage" : 'disableButton'}
-                onClick={nextPage} disabled={(pokemonData.next) ? false : true}>Next</button>
+                  onClick={nextPage} disabled={(pokemonData.next) ? false : true}>Next</button>
+                </Link>
             </div>
           </>)
       }
