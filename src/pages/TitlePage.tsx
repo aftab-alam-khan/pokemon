@@ -7,7 +7,7 @@ import Loading from '../Loading'
 import '../App.css';
 
 
-const pokomonUrl = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
+// const pokomonUrl: string = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20";
 
 interface PokedexData {
   count: number;
@@ -23,40 +23,42 @@ const pokemondekData: PokedexData = {
   results: []
   }
 
-  
-  
-
 function TitlePage() {
 
-  const [urlData, setUrlData] = useState(pokomonUrl);
-  const [pokemonData, setPokemonData] = useState<PokedexData>(pokemondekData)
+  // const [urlData, setUrlData] = useState(pokomonUrl);
+  const [pokemonData, setPokemonData] = useState<PokedexData>(pokemondekData);
 
   const query = new URLSearchParams(useLocation().search);
-  const id = Number(query.get("page"));
-  console.log('page-id', (id - 1) * 20);
-  
+  // const id = Number(query.get("page"));
+  // console.log('page-id', (id - 1) * 20);
+  const pageNumber = Number(query.get("page"));
+  const offsetValue = ((pageNumber -1) * 20) ;
   
 
   useEffect(() => {
     
+    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offsetValue}&limit=20`
+    
+    // console.log('url', url);
+    
     const fetchData = async () => {
-      const result = await fetch(urlData);
+      const result = await fetch(url);
       const data = await result.json();
       setPokemonData(data)
     };
     fetchData();
-  }, [urlData])
+  }, [offsetValue])
 
-  const previousPage = () => {
-    if (pokemonData.previous) {
-      setUrlData(pokemonData.previous)
-    }
-  };
-  const nextPage = () => {
-    if (pokemonData.next) {
-      setUrlData(pokemonData.next);
-    }
-  };
+  // const previousPage = () => {
+  //   if (pokemonData.previous) {
+  //     setUrlData(pokemonData.previous)
+  //   }
+  // };
+  // const nextPage = () => {
+  //   if (pokemonData.next) {
+  //     setUrlData(pokemonData.next);
+  //   }
+  // };
 
   return (
     <>
@@ -67,15 +69,19 @@ function TitlePage() {
           <>
             <ShowPage pokemon={pokemonData.results} />
             <div className="previous">
-              <Link to='/titlepage?page=7' >
-              <button className={(pokemonData.previous) ? "backHomePage" : 'disableButton'}
-                  onClick={previousPage} disabled={(pokemonData.previous) ? false : true}>Previous</button>
+              <Link to={`/titlepage?page=${pageNumber - 1}`}
+                className={(pokemonData.previous) ? "backHomePage" : 'disableButton'}>
+                Previous
+              {/* <button 
+                  onClick={previousPage} disabled={(pokemonData.previous) ? false : true}>Previous</button> */}
                 </Link>
             </div>
             <div className="next">
-            <Link to='/titlepage?page=9' >
-              <button className={(pokemonData.next) ? "backHomePage" : 'disableButton'}
-                  onClick={nextPage} disabled={(pokemonData.next) ? false : true}>Next</button>
+              <Link to={`/titlepage?page=${pageNumber + 1}`}
+                className={(pokemonData.next) ? "backHomePage" : 'disableButton'}>
+                Next
+              {/* <button 
+                  onClick={nextPage} disabled={(pokemonData.next) ? false : true}></button> */}
                 </Link>
             </div>
           </>)

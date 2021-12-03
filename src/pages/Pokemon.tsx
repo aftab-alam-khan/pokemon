@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Loading from '../Loading'
 import '../App.css';
@@ -10,10 +10,13 @@ const Pokemon = () => {
   const [pokemonData, setPokemonData] = useState<any>('')
   const { id } = useParams();
   
+  const pokemonPageUrl = `https://pokeapi.co/api/v2/pokemon/${id}/`;
 
-  const pokemonPageUrl = `https://pokeapi.co/api/v2/pokemon/${id}/`
+  const navigate = useNavigate();
+  
 
   useEffect(() => {
+    
     const fetchData = () => {
       fetch(pokemonPageUrl)
         .then(r => r.json())
@@ -24,12 +27,12 @@ const Pokemon = () => {
     };
     fetchData();
 
-  })
+  }, [pokemonPageUrl])
 
 
   return (
     <>
-      <Link to="/titlepage?page=1" className="backHomePage">Title Page</Link>
+      <button onClick={() => navigate(-1)} className="backHomePage">Title Page</button>
       {(!pokemonData)
         ? <Loading />
         : (
