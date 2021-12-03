@@ -93,16 +93,23 @@
 
 .TitlePage p .atag {
   text-decoration: none;
-  padding: 10px;
+  padding: 15px;
   cursor: zoom-in;
 }
 
+.TitlePage p{
+  transition: 0.3s ease;
+}
+
 .TitlePage p:hover {
-  padding: 15px;
+  /* padding: 15px; */
   font-weight: bold;
-  border-radius: 12px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  overflow: hidden;
+  -webkit-transform: scale(1.9);
+-ms-transform: scale(1.9);
+transform: scale(1.9);
+transition: 0.3s ease;
 }
 
 .next {
