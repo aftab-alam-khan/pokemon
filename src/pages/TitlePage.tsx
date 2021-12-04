@@ -44,7 +44,11 @@ function TitlePage() {
       navigate(-1)
     }
 
-    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offsetValue}&limit=20`
+    const pokemonUrl = process.env.REACT_APP_POKEMON_URL
+    if (!pokemonUrl) {
+      throw new Error("Please add environment(.env) variable 'REACT_APP_POKEMON_URL' value")
+    }
+    const url = `${pokemonUrl}?offset=${offsetValue}&limit=20`  // REACT_APP_POKEMON_URL='https://pokeapi.co/api/v2/pokemon'
 
     const fetchData = async () => {
       const result = await fetch(url);

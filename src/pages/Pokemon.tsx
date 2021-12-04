@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import Loading from '../Loading'
 import '../App.css';
@@ -8,12 +8,14 @@ import '../App.css';
 
 const Pokemon = () => {
   const [pokemonData, setPokemonData] = useState<any>('')
-  const { id } = useParams();
-  
-  const pokemonPageUrl = `https://pokeapi.co/api/v2/pokemon/${id}/`;
-
   const navigate = useNavigate();
-  
+  const { id } = useParams();
+
+  const pokemonUrl = process.env.REACT_APP_POKEMON_URL
+  if (!pokemonUrl) {
+    throw new Error("Please add environment(.env) variable 'REACT_APP_POKEMON_URL' value")
+  }
+  const pokemonPageUrl = `${pokemonUrl}/${id}/`;   // REACT_APP_POKEMON_URL='https://pokeapi.co/api/v2/pokemon'
 
   useEffect(() => {
     
@@ -32,7 +34,7 @@ const Pokemon = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)} className="backHomePage">Title Page</button>
+      <Link to='#' onClick={() => navigate(-1)} className="backHomePage">Title Page</Link>
       {(!pokemonData)
         ? <Loading />
         : (
