@@ -4,11 +4,15 @@ interface Pokedex {
   pokemon: []
 }
 
+const getPokemonID = (url:string) => {
+  return url.match(/\d+/g);
+}
+
 const ShowPage = ({ pokemon }: Pokedex) => {
   return (
     <>
       {pokemon.filter((data: { url: string }) => {
-        const rejex: any = data.url.match(/\d+/g);
+        const rejex: any = getPokemonID(data.url);
         const capValue = process.env.REACT_APP_CAP_VALUE    // capValue=151
         if (!capValue) {
           throw new Error("Please add environment(.env) variable 'REACT_APP_CAP_VALUE' value")
@@ -16,7 +20,7 @@ const ShowPage = ({ pokemon }: Pokedex) => {
         return (rejex[1] <= Number(capValue))
       })
         .map((data: { name: string, url: string }, id: number) => {
-          const rejex: any = data.url.match(/\d+/g);
+          const rejex: any = getPokemonID(data.url);
           return (
             <div key={id} className="TitlePage">
               <p key={id}>
