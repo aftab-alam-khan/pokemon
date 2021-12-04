@@ -82,7 +82,9 @@ function TitlePage() {
         ? <Loading />
         : (
           <>
-            <ShowPage pokemon={pokemonData.results} />
+            <div className='showpage'>
+              <ShowPage pokemon={pokemonData.results} />
+            </div>
             <div className="previous">
               <Link to={`/titlepage?page=${pageNumber - 1}`}
                 className={(pokemonData.previous) ? "backHomePage" : 'disableButton'}
