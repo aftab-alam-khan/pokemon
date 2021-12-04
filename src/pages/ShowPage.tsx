@@ -4,27 +4,31 @@ interface Pokedex {
   pokemon: []
 }
 
-const getPokemonID = (url:string) => {
-  return url.match(/\d+/g);
+const getPokemonID = (url:string): number => {
+  const pokemonID = url.match(/\d+/g);
+  if (!pokemonID) {
+    throw new Error(`Pokemon id not found in the url '${url}'`)
+  }
+  return Number(pokemonID[1]);
 }
 
 const ShowPage = ({ pokemon }: Pokedex) => {
   return (
     <>
       {pokemon.filter((data: { url: string }) => {
-        const rejex: any = getPokemonID(data.url);
+        const pokemonID:number = getPokemonID(data.url);
         const capValue = process.env.REACT_APP_CAP_VALUE    // capValue=151
         if (!capValue) {
           throw new Error("Please add environment(.env) variable 'REACT_APP_CAP_VALUE' value")
         }
-        return (rejex[1] <= Number(capValue))
+        return (pokemonID <= Number(capValue))
       })
         .map((data: { name: string, url: string }, id: number) => {
-          const rejex: any = getPokemonID(data.url);
+          const pokemonID:number = getPokemonID(data.url);
           return (
             <div key={id} className="TitlePage">
               <p key={id}>
-                <Link to={`/pokemon/${rejex[1]}`} className="atag" key={rejex[1]}>{data.name}</Link>
+                <Link to={`/pokemon/${pokemonID}`} className="atag" key={pokemonID}>{data.name}</Link>
               </p>
             </div>
           )
