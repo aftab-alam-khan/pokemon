@@ -17,10 +17,7 @@ const ShowPage = ({ pokemon }: Pokedex) => {
     <>
       {pokemon.filter((data: { url: string }) => {
         const pokemonID:number = getPokemonID(data.url);
-        const capValue = process.env.REACT_APP_CAP_VALUE    // capValue=151
-        if (!capValue) {
-          throw new Error("Please add environment(.env) variable 'REACT_APP_CAP_VALUE' value")
-        }
+        const capValue = process.env.REACT_APP_CAP_VALUE || '151';
         return (pokemonID <= Number(capValue))
       })
         .map((data: { name: string, url: string }, id: number) => {

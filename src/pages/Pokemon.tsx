@@ -11,11 +11,8 @@ const Pokemon = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const pokemonUrl = process.env.REACT_APP_POKEMON_URL
-  if (!pokemonUrl) {
-    throw new Error("Please add environment(.env) variable 'REACT_APP_POKEMON_URL' value")
-  }
-  const pokemonPageUrl = `${pokemonUrl}/${id}/`;   // REACT_APP_POKEMON_URL='https://pokeapi.co/api/v2/pokemon'
+  const pokemonUrl = process.env.REACT_APP_POKEMON_URL || 'https://pokeapi.co/api/v2/pokemon';
+  const pokemonPageUrl = `${pokemonUrl}/${id}/`;
 
   useEffect(() => {
     
