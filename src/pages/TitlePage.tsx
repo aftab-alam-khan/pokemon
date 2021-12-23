@@ -26,19 +26,26 @@ function TitlePage() {
   const [offsetValue, setOffsetValue] = useState(0)
 
   const query = new URLSearchParams(useLocation().search);
-  const pageNumber = (Number(query.get("page")));
+  const pageNumber = Number(query.get("page") ?? 1);
+  console.log(query.get("page"));
+  
+  console.log(pageNumber);
+  
 
   const navigate = useNavigate();
 
-
+  const lastPage = (offsetValue + 20) >= Number(process.env.REACT_APP_CAP_VALUE)
 
   useEffect(() => {
-    if ((pageNumber >= 0) && (pageNumber <= 8)) {
-      if (pageNumber === 0) {
-        setOffsetValue(0);
-      } else {
-        setOffsetValue((pageNumber - 1) * 20);
-      }
+    
+    const newOffset = (pageNumber - 1) * 20;
+
+    if ((pageNumber > 0) && (newOffset < Number(process.env.REACT_APP_CAP_VALUE))) {
+      // if (pageNumber === 0) {
+      //   setOffsetValue(0);
+      // } else {
+        setOffsetValue(newOffset);
+      // }
     } else {
       alert('Page not found')
       navigate(-1)
@@ -55,9 +62,10 @@ function TitlePage() {
     fetchData();
   }, [offsetValue, pageNumber, navigate]);
 
-  const buttonClass = (pokemonData: string, pageNumber: number): string => {
+  
+  const buttonClass = (pokemonData: string): string => {
     let buttonClassName: string;
-    if (pageNumber > 7) {
+    if (lastPage) {
       buttonClassName = 'disableButton';
     } else {
       if (pokemonData) {
@@ -70,11 +78,11 @@ function TitlePage() {
     return buttonClassName;
   };
 
-  const nextPage = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, pageNumber: number): void => {
-    if (pageNumber > 7) {
-      return e.preventDefault();
-    }
-  }
+  // const nextPage = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, pageNumber: number): void => {
+  //   if (pageNumber > 7) {
+  //     return e.preventDefault();
+  //   }
+  // }
 
   return (
     <>
@@ -89,14 +97,14 @@ function TitlePage() {
             <div className="previous">
               <Link to={`/titlepage?page=${pageNumber - 1}`}
                 className={(pokemonData.previous) ? "backHomePage" : 'disableButton'}
-                onClick={e => { if (!pokemonData.previous) e.preventDefault() }}>
+                onClick={e => { if (pageNumber === 1) e.preventDefault() }}>
                 Previous
               </Link>
             </div>
             <div className="next">
               <Link to={`/titlepage?page=${pageNumber + 1}`}
-                className={buttonClass(pokemonData.next, pageNumber)}
-                onClick={e => nextPage(e, pageNumber)}>
+                className={buttonClass(pokemonData.next)}
+                onClick={e => {if(lastPage) e.preventDefault()}}>
                 Next
               </Link>
             </div>
