@@ -34,13 +34,13 @@ function TitlePage() {
 
   const navigate = useNavigate();
 
-  const lastPage = (offsetValue + 20) >= Number(process.env.REACT_APP_CAP_VALUE)
+  const lastPage = (offsetValue + 20) >= Number(process.env.REACT_APP_CAP_VALUE || '151')
 
   useEffect(() => {
     
     const newOffset = (pageNumber - 1) * 20;
 
-    if ((pageNumber > 0) && (newOffset < Number(process.env.REACT_APP_CAP_VALUE))) {
+    if ((pageNumber > 0) && (newOffset < Number(process.env.REACT_APP_CAP_VALUE || '151'))) {
       // if (pageNumber === 0) {
       //   setOffsetValue(0);
       // } else {
